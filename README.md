@@ -23,7 +23,7 @@ Setup
 
 #### Run the example
 
-    $ go-lisp -file $HOME/go/src/github.com/jonasagx/go-lisp/example.lsp
+    $ go-lisp -file $GOPATH/src/github.com/jonasagx/go-lisp/example.lsp
 
 #### Run it interactively
 
