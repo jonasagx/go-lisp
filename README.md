@@ -13,26 +13,17 @@ Inspired by: [http://norvig.com/lispy.html]
 Setup
 -----
 
-#### Install Go
-
-[http://golang.org/doc/install]()
-
-#### Make sure your GOPATH is setup correctly, something like
-
-    $ export GOPATH=$HOME/go
-    $ mkdir -p $GOPATH
-
 #### Clone the repo
 
-    $ go get github.com/janne/go-lisp
+    $ go get github.com/jonasagx/go-lisp
 
 #### Run the tests
 
-    $ go test github.com/janne/go-lisp/lisp
+    $ go test github.com/jonasagx/go-lisp/lisp
 
 #### Run the example
 
-    $ go-lisp -file $HOME/go/src/github.com/janne/go-lisp/example.lsp
+    $ go-lisp -file $HOME/go/src/github.com/jonasagx/go-lisp/example.lsp
 
 #### Run it interactively
 
