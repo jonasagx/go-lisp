@@ -4,7 +4,7 @@ import (
 	"bufio"
 	"flag"
 	"fmt"
-	"github.com/janne/go-lisp/lisp"
+	"github.com/jonasagx/go-lisp/lisp"
 	"io/ioutil"
 	"os"
 	"strings"
@@ -34,15 +34,21 @@ func main() {
 	}
 }
 
+
 func Repl() {
 	fmt.Printf("Welcome to the Lisp REPL\n")
 	reader := bufio.NewReader(os.Stdin)
 	expr := ""
+	historyHolder := lisp.NewTimeline()
+	
 	for {
 		if expr == "" {
 			fmt.Printf("\n> ")
 		}
 		line, _ := reader.ReadString('\n')
+		historyHolder.NewLine(line)
+		fmt.Println(historyHolder.GetTimeline())
+		// fmt.Println(historyHolder.history)
 		expr = fmt.Sprintf("%v%v", expr, line)
 		openCount := strings.Count(expr, "(")
 		closeCount := strings.Count(expr, ")")
@@ -64,4 +70,5 @@ func Repl() {
 			expr = ""
 		}
 	}
+	fmt.Println("Bye!")
 }
