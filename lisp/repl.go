@@ -1,17 +1,42 @@
 package lisp
 
 import (
-	"bufio"
-	"fmt"
 	"os"
+	"fmt"
+	"bufio"
 	"strings"
+	"syscall"
+	"os/signal"
 )
 
+// Global variable
+var historyHolder Timeline
+
+func saveToHistory(historyParsed string) {
+	fmt.Println("\nsaveToHistory")
+	fmt.Print(historyParsed)
+}
+
+func 
+
+func CaptureSIGTERM() {
+    c := make(chan os.Signal, 2)
+    signal.Notify(c, os.Interrupt, syscall.SIGTERM)
+    
+    go func() {
+        <-c
+        saveToHistory(historyHolder.toString())
+        os.Exit(0)
+    }()
+}
+
 func Repl() {
+	historyHolder = NewTimeline()
+	CaptureSIGTERM()
+
 	fmt.Printf("Welcome to the Lisp REPL\n")
 	reader := bufio.NewReader(os.Stdin)
 	expr := ""
-	historyHolder := NewTimeline()
 	
 	for {
 		if expr == "" {
@@ -21,9 +46,9 @@ func Repl() {
 		historyHolder.NewLine(line)
 
 		expr = fmt.Sprintf("%v%v", expr, line)
-
 		openCount := strings.Count(expr, "(")
 		closeCount := strings.Count(expr, ")")
+
 		if openCount < closeCount {
 			fmt.Printf("ERROR: Malformed expression: %v", line)
 			expr = ""
@@ -42,5 +67,4 @@ func Repl() {
 			expr = ""
 		}
 	}
-	fmt.Println("Bye!")
 }
