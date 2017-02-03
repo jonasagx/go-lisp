@@ -2,6 +2,7 @@ package lisp
 
 import (
 	"time"
+	"bytes"
 )
 
 type Entry struct {
@@ -28,6 +29,15 @@ func (t *Timeline) LastLine() Entry {
 
 func (t *Timeline) GetTimeline() []Entry {
 	return t.entries
+}
+
+func (t *Timeline) toString() string {
+	var buffer bytes.Buffer
+	for _,entry := range(t.entries){
+		buffer.WriteString(entry.expression)
+	}
+
+	return buffer.String()
 }
 
 func NewTimeline() Timeline {
