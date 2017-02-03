@@ -11,7 +11,9 @@ import (
 
 func main() {
 	var file = flag.String("file", "", "File to interpret")
-	var repl = flag.Bool("i", false, "Interactive mode")
+
+	// Open as a terminal by default
+	var repl = flag.Bool("i", true, "Interactive mode") 
 	flag.Parse()
 
 	if *repl {
